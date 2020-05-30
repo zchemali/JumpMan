@@ -1,11 +1,18 @@
 import java.awt.Graphics;
-
+/**
+ * 
+ * @author zchem
+ *@version 1.0
+ *this is an abstract class which is used to create characters/obstacles
+ */
 public abstract class GameObjects {
+	
 	protected int x;
 	protected int y;
 	protected int velx;
 	private int vely;
 	protected Tag tag;
+	// constructor
  public GameObjects(int x,int y,Tag tag)
  {
 	 this.x=x;
@@ -44,7 +51,7 @@ public int getVely() {
 public void setVely(int vely) {
 	this.vely = vely;
 }
-
+// abstract methods are overridden 
 	abstract void update();
 	abstract void render (Graphics g);
 }

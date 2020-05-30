@@ -1,9 +1,13 @@
-
+/**
+ * 
+ * @author zchem
+ *@version 1.0
+ *this is just a unique identification of GameObjects
+ *@see GameObjects.java
+ */
 public enum Tag {
 Player(),
-Obstical(),
 PlatForm(),
-Obstical2(),
-	
-	
+Obstacle1(),
+Obstacle2(),
 }
