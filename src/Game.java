@@ -6,6 +6,11 @@
  */
 
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 // this is main class where it controls/invokes all other classes
 public class Game extends Canvas implements Runnable {
 	// variables
@@ -15,9 +20,12 @@ public class Game extends Canvas implements Runnable {
 	private Spawn spawn;
 	private Handler handler;
 	private Thread thread1;
+	private BufferedImage spritesheet=null;
+	private BufferedImage [] player;
 	//constructor initializing variables
 	public Game()
-	{	thread1=new Thread(this);
+	{	player =new BufferedImage[5];
+		thread1=new Thread(this);
 		window =new Window(WIDTH,HEIGHT,this);
 		
 		handler =new Handler();
@@ -35,6 +43,7 @@ public class Game extends Canvas implements Runnable {
 	//Note: this contains the main game loop 
 	@Override
 	public void run() {
+		init();
 		long before=System.currentTimeMillis();
 		long timer=System.currentTimeMillis();
 		long target=1000/60;
@@ -67,8 +76,8 @@ public class Game extends Canvas implements Runnable {
 		Thread player =new Thread(this);
 		thread1.start();
 		running=true;
-		spawn=new Spawn(running);
-		spawn.start();
+		//spawn=new Spawn(running);
+		//spawn.start();
 		
 	}
 	//stop threads
@@ -82,8 +91,43 @@ public class Game extends Canvas implements Runnable {
 		
 	}
 	// this will update the graphics
+	//creating bufferstragtegy so it displays graphics faster
 	public void render() {
 		
-	}
+		
+		BufferStrategy bs =this.getBufferStrategy();
+		if(bs==null) {
+			this.createBufferStrategy(3);
+			return;
+		}
+		Graphics g;
+		g=bs.getDrawGraphics();
+		long timer =System.currentTimeMillis();
+		
+		
+		
+		
+			g.drawImage(player[0], 100, 100,50,60,this);
+			
+			
+		
+		
+		g.dispose();
+		bs.show();
+		
 
+}
+public void init() {
+	BufferedImageLoader bi= new BufferedImageLoader();
+	spritesheet=bi.loadImage("/Idle__000.png");
+	player[0]=spritesheet;
+	spritesheet=bi.loadImage("/Idle__001.png");
+	player[1]=spritesheet;
+	spritesheet=bi.loadImage("/Idle__002.png");
+	player[2]=spritesheet;
+	spritesheet=bi.loadImage("/Idle__003.png");
+	player[3]=spritesheet;
+	spritesheet=bi.loadImage("/Idle__004.png");
+	player[4]=spritesheet;
+}
 }

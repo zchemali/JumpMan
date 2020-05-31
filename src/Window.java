@@ -21,6 +21,9 @@ public class Window extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		setTitle("Jump Man Game");
+		setBounds(0, 0, width, height);
+		setLocationRelativeTo(null);
+		
 		this.add(game);
 		game.start();
 		
