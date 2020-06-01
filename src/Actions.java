@@ -29,9 +29,14 @@ private Handler handler;
 			{
 				if(i==KeyEvent.VK_D) temp.setVelx(2);
 				if(i==KeyEvent.VK_A) temp.setVelx(-2);
-				if(i==KeyEvent.VK_W) temp.setVely(-2);
-				if(i==KeyEvent.VK_S) temp.setVely(2);
-				if(i==KeyEvent.VK_SPACE);
+				if(i==KeyEvent.VK_W) temp.setVely(0);
+				if(i==KeyEvent.VK_SPACE) {
+					
+					if(i==KeyEvent.VK_SPACE)	
+					temp.setVely(-5) ;
+					temp.setFalling(false);
+					temp.setJumping(true);
+				}
 			}
 		}
 		
@@ -49,8 +54,11 @@ private Handler handler;
 				if(i==KeyEvent.VK_D) temp.setVelx(0);
 				if(i==KeyEvent.VK_A) temp.setVelx(0);
 				if(i==KeyEvent.VK_W) temp.setVely(0);
-				if(i==KeyEvent.VK_S) temp.setVely(0);
-				if(i==KeyEvent.VK_SPACE);
+				if(i==KeyEvent.VK_SPACE) {
+					;
+					temp.setFalling(true);
+					temp.setJumping(false);
+				}
 			}
 		}
 	}
