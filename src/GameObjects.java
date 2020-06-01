@@ -1,4 +1,6 @@
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.util.ArrayList;
 /**
  * 
  * @author zchem
@@ -7,51 +9,72 @@ import java.awt.Graphics;
  */
 public abstract class GameObjects {
 	
-	protected int x;
-	protected int y;
-	protected int velx;
-	private int vely;
+	protected float x;
+	protected float y;
+	protected float velx;
+	protected float vely;
+	protected float gravity;
+	protected boolean falling;
+	
 	protected Tag tag;
 	// constructor
- public GameObjects(int x,int y,Tag tag)
+ public GameObjects(float x,float y,Tag tag)
  {
 	 this.x=x;
 	 this.y=y;
 	 this.tag=tag;
  }
 	
-	public int getX() {
+	public float getX() {
 	return x;
 }
 
-public void setX(int x) {
+public void setX(float x) {
 	this.x = x;
 }
 
-public int getY() {
+public float getY() {
 	return y;
 }
 
-public void setY(int y) {
+public void setY(float y) {
 	this.y = y;
 }
 
-public int getVelx() {
+public float getVelx() {
 	return velx;
 }
 
-public void setVelx(int velx) {
+public void setVelx(float velx) {
 	this.velx = velx;
 }
 
-public int getVely() {
+public float getVely() {
 	return vely;
 }
 
-public void setVely(int vely) {
+public void setVely(float vely) {
 	this.vely = vely;
 }
 // abstract methods are overridden 
-	abstract void update();
-	abstract void render (Graphics g);
+	public abstract void update(ArrayList<GameObjects> Objects);
+	public abstract void render (Graphics g);
+	//this method is for collision detection
+	public abstract Rectangle getBounds();
+
+	public float getGravity() {
+		return gravity;
+	}
+
+	public void setGravity(float gravity) {
+		this.gravity = gravity;
+	}
+
+	public boolean isFalling() {
+		return falling;
+	}
+
+	public void setFalling(boolean falling) {
+		this.falling = falling;
+	}
 }
