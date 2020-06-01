@@ -13,9 +13,13 @@ public abstract class GameObjects {
 	protected float y;
 	protected float velx;
 	protected float vely;
+	public void setJumping(boolean jumping) {
+		this.jumping = jumping;
+	}
+
 	protected float gravity;
 	protected boolean falling;
-	
+	protected boolean jumping;
 	protected Tag tag;
 	// constructor
  public GameObjects(float x,float y,Tag tag)

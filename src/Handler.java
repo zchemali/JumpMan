@@ -42,5 +42,13 @@ public class Handler {
 		addObject(new PlatForm(xx,Game.HEIGHT-64,Tag.Block1));
 		
 	 }
+	 for (int xx=200; xx<Game.WIDTH-200 ;xx+=32) {
+			addObject(new PlatForm(xx,Game.HEIGHT-200,Tag.Block1));
+			
+		 }
+	 for (int yy=0; yy<Game.HEIGHT ;yy+=32) {
+			addObject(new PlatForm(0,yy,Tag.Block1));
+			
+		 }
  }
 }

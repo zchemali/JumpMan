@@ -11,7 +11,7 @@ public class Player extends GameObjects{
 	public Player(float x, float y, Tag tag) {
 		super(x, y, tag);
 		falling=true;
-		setGravity(0.1f);
+		setGravity(0.2f);
 		
 	}
 
@@ -29,19 +29,31 @@ public class Player extends GameObjects{
 			vely=MAX_VELY;}
 		for (int i=0; i<Objects.size();i++)
 		{	GameObjects temp =Objects.get(i);
-			System.out.println(temp.x);
+			//System.out.println(temp.x);
 			if (temp.tag==Tag.Block1) {
-				System.out.println("yes");
+				//System.out.println("yes");
 				if(getBounds().intersects(temp.getBounds())) {
-					setFalling(false);
-					jumping=false;
 					vely=0;
+					
+					}
+				
+					if(getBoundsLeft().intersects(temp.getBounds()))
+						{velx=0;
+						}
+					if(getBoundsRight().intersects(temp.getBounds()))
+					{velx=0;
+					
+					}
+					if(getBoundsTop().intersects(temp.getBounds()))
+					{ vely=0;
+					
+					}
 				
 				}
 			}
 		}
 		
-	}
+	
 		
 		
 	
@@ -51,30 +63,30 @@ public class Player extends GameObjects{
 		g.setColor(Color.white);
 		g.fillRect((int)x, (int)y, width, height);
 		Graphics2D g2d;
-		/**g.setColor(Color.RED);
+		g.setColor(Color.BLUE);
 		g2d=(Graphics2D) g;
 		g2d.draw(getBounds());
 		g2d.draw(getBoundsLeft());
 		g2d.draw(getBoundsRight());
-		g2d.draw(getBoundsTop());**/
+		g2d.draw(getBoundsTop());
 	}
 
 	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
-		return new Rectangle((int)x,(int)y+75,width,height-70);
+		return new Rectangle((int)x+5,(int)y+75,width-10,height-70);
 
 	}
 	public Rectangle getBoundsLeft() {
 		// TODO Auto-generated method stub
-		return new Rectangle((int)x-1,(int)y+30,width-42,height);
+		return new Rectangle((int)x-2,(int)y+2,width-42,height);
 }
 	public Rectangle getBoundsRight() {
 		// TODO Auto-generated method stub
-		return new Rectangle((int)x+43,(int)y+30,width-42,height);
+		return new Rectangle((int)x+44,(int)y-2,width-42,height);
 }
 	public Rectangle getBoundsTop() {
 		// TODO Auto-generated method stub
-		return new Rectangle((int)x,(int)y,width,height-60);
+		return new Rectangle((int)x+5,(int)y,width-10,height-70);
 }
 }
