@@ -118,10 +118,10 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		handler.render(g);
 		
-		for (int i =0 ;i<5;i++)
+	/**	for (int i =0 ;i<5;i++)
 		{	g.drawImage(player[i], 100, 100,50,60,this);
 		//System.out.println(i);
-		}
+		}**/
 			
 		
 		

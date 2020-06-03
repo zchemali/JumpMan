@@ -13,6 +13,15 @@ public abstract class GameObjects {
 	protected float y;
 	protected float velx;
 	protected float vely;
+	protected int count;
+	public int getCount() {
+		return count;
+	}
+
+	public boolean isJumping() {
+		return jumping;
+	}
+
 	public void setJumping(boolean jumping) {
 		this.jumping = jumping;
 	}

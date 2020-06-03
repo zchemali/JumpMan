@@ -17,7 +17,7 @@ public class PlatForm  extends GameObjects{
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.BLUE);
+		g.setColor(Color.WHITE);
 		g.drawRect((int)x, (int)y, 32, 32);
 		g.setColor(Color.red);
 		Graphics2D g2d =(Graphics2D) g;
