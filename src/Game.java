@@ -8,6 +8,7 @@
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -22,7 +23,8 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread1;
 	private BufferedImage spritesheet=null;
 	private BufferedImage [] player;
-	private Actions actions;
+	private Actions actions; 
+	private Camera cam;
 	//constructor initializing variables
 	public Game()
 	{	player =new BufferedImage[5];
@@ -33,7 +35,7 @@ public class Game extends Canvas implements Runnable {
 		this.requestFocusInWindow();
 		this.addKeyListener(new Actions(handler));
 		handler.addObject(new Player(70, 100, Tag.Player));
-		
+		cam=new Camera(0,0);
 		System.out.println(handler.chars.size());
 		
 	}
@@ -101,6 +103,10 @@ public class Game extends Canvas implements Runnable {
 	//this method will be used to update the x,y coordinates of player/obstacles 
 	public void update() {
 		handler.update();
+		for (int i=0;i<handler.chars.size();i++)
+		{
+			if(handler.chars.get(i).tag==Tag.Player)
+				cam.update(handler.chars.get(i));}
 	}
 	// this will update the graphics
 	//creating bufferstragtegy so it displays graphics faster
@@ -114,10 +120,13 @@ public class Game extends Canvas implements Runnable {
 		}
 		Graphics g;
 		g=bs.getDrawGraphics();
+		Graphics2D g2d =(Graphics2D) g;
+		
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g2d.translate(cam.getX(), cam.getY());
 		handler.render(g);
-		
+		g2d.translate(-cam.getX(),-cam.getY());
 	/**	for (int i =0 ;i<5;i++)
 		{	g.drawImage(player[i], 100, 100,50,60,this);
 		//System.out.println(i);

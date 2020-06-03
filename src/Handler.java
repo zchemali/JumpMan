@@ -38,7 +38,7 @@ public class Handler {
 		chars.remove(tem);
 	}
  public void createLevel() {
-	 for (int xx=0; xx<Game.WIDTH ;xx+=32) {
+	 for (int xx=0; xx<Game.WIDTH*2 ;xx+=32) {
 		addObject(new PlatForm(xx,Game.HEIGHT-64,Tag.Block1));
 		
 	 }
