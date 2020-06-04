@@ -26,7 +26,7 @@ public class MovingObsticale extends GameObjects{
 		{	x-=1;
 		count++;}
 		
-		System.out.println(count);
+		//System.out.println(count);
 	}
 
 	@Override

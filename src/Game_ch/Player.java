@@ -70,12 +70,12 @@ public class Player extends GameObjects{
 					}
 				
 				}
-			
+			//sets collision for moving objects s
 			else if (temp.tag==Tag.Obstacle1 || temp.tag==Tag.Obstacle2 ) {
 				if(getBounds().intersects(temp.getBounds()))
 				{vely=0;
-				setX(temp.getX());
-				setY(temp.getY());
+				setX(temp.getX()+20);
+				setY(temp.getY()-90);
 				falling=false;
 				setJumping(true);
 				System.out.println("YESS");
