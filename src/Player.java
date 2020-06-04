@@ -83,11 +83,11 @@ public class Player extends GameObjects{
 		g.fillRect((int)x, (int)y, width, height);
 		Graphics2D g2d;
 		g.setColor(Color.BLUE);
-		g2d=(Graphics2D) g;
+		/**g2d=(Graphics2D) g;
 		g2d.draw(getBounds());
 		g2d.draw(getBoundsLeft());
 		g2d.draw(getBoundsRight());
-		g2d.draw(getBoundsTop());
+		g2d.draw(getBoundsTop());**/
 	}
 //getbounds method to represet the boundary of the player
 	@Override
