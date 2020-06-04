@@ -1,3 +1,4 @@
+package Game_ch;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public abstract class GameObjects {
 	protected float gravity;
 	protected boolean falling;
 	protected boolean jumping;
-	protected Tag tag;
+	public Tag tag;
 	// constructor
  public GameObjects(float x,float y,Tag tag)
  {

@@ -1,3 +1,4 @@
+import Game_ch.*;
 //animating the platform
 public class Camera {
 

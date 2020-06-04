@@ -5,7 +5,7 @@ import javax.imageio.ImageIO;
 /**
  * 
  * @author zchem
- *Loads sprite sheet
+ *Loads sprite sheet 
  */
 public class BufferedImageLoader {
 
