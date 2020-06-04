@@ -1,5 +1,8 @@
 import java.awt.Graphics;
 import java.util.ArrayList;
+
+import Game_ch.*;
+
 /**
  * 
  * @author zchem

@@ -4,6 +4,8 @@
  * @since
  * @version 1.0
  */
+import Game_ch.*;
+import Image_editors.BufferedImageLoader;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -38,7 +40,8 @@ public class Game extends Canvas implements Runnable {
 		//handler.createLevel();
 		this.requestFocusInWindow();
 		this.addKeyListener(new Actions(handler));
-		handler.addObject(new Player(70, 100, Tag.Player));
+		//handler.addObject(new Player(70, 100, Tag.Player));
+		
 		cam=new Camera(0,0);
 		System.out.println(handler.chars.size());
 		
@@ -165,6 +168,15 @@ public class Game extends Canvas implements Runnable {
 				{
 					//System.out.println(red + green+ blue);
 					handler.addObject(new PlatForm (xx*32,yy*32,Tag.Block1) );
+				}
+				else if(red==128 && green==128 && blue==128) {
+					handler.addObject(new Player (xx*32,yy*32-90,Tag.Player));
+				}
+				else if (red ==0 && green==255 && blue==255) {
+					handler.addObject(new MovingObsticale(xx*32, yy*32, Tag.Obstacle1));
+				}
+				else if (red ==255 && green==0 && blue==0) {
+					handler.addObject(new UpDown(xx*32, yy*32, Tag.Obstacle2));
 				}
 			}
 			

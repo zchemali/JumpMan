@@ -1,3 +1,4 @@
+package Game_ch;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -37,7 +38,7 @@ public class Player extends GameObjects{
 		for (int i=0; i<Objects.size();i++)
 		{	GameObjects temp =Objects.get(i);
 			//System.out.println(temp.x);
-			if (temp.tag==Tag.Block1) {
+			if (temp.tag==Tag.Block1 ) {
 				//System.out.println("yes");
 				if(getBounds().intersects(temp.getBounds())) {
 					vely=0;
@@ -69,7 +70,21 @@ public class Player extends GameObjects{
 					}
 				
 				}
+			//sets collision for moving objects s
+			else if (temp.tag==Tag.Obstacle1 || temp.tag==Tag.Obstacle2 ) {
+				if(getBounds().intersects(temp.getBounds()))
+				{vely=0;
+				setX(temp.getX()+20);
+				setY(temp.getY()-90);
+				falling=false;
+				setJumping(true);
+				System.out.println("YESS");
+				}
 			}
+		
+		
+		}
+		
 		}
 		
 	

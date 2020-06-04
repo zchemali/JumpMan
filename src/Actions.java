@@ -1,7 +1,7 @@
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import Game_ch.*;
 import javax.net.ssl.SSLEngineResult.Status;
 /**
  * This class controls all key pressed
