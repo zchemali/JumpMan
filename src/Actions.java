@@ -43,7 +43,7 @@ int count =0;
 						if(count<=3) {
 						temp.setVely(-5) ;
 						count+=1;
-						System.out.println("first"+count);
+						//System.out.println("first"+count);
 						//temp.setJumping(false);
 					if(count==3)
 					{

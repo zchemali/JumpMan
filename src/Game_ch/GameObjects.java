@@ -15,18 +15,6 @@ public abstract class GameObjects {
 	protected float velx;
 	protected float vely;
 	protected int count;
-	public int getCount() {
-		return count;
-	}
-
-	public boolean isJumping() {
-		return jumping;
-	}
-
-	public void setJumping(boolean jumping) {
-		this.jumping = jumping;
-	}
-
 	protected float gravity;
 	protected boolean falling;
 	protected boolean jumping;
@@ -90,5 +78,16 @@ public void setVely(float vely) {
 
 	public void setFalling(boolean falling) {
 		this.falling = falling;
+	}
+	public int getCount() {
+		return count;
+	}
+
+	public boolean isJumping() {
+		return jumping;
+	}
+
+	public void setJumping(boolean jumping) {
+		this.jumping = jumping;
 	}
 }
