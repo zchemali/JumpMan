@@ -49,7 +49,7 @@ int count =0;
 					{
 						{temp.setJumping(false);
 						count-=3;
-						System.out.println("second"+count);}
+						}
 					}
 					
 				}

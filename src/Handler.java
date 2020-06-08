@@ -19,6 +19,7 @@ public class Handler {
 	public void update() {
 		
 		for(int i=0;i<chars.size();i++)
+			
 		{	temp=chars.get(i);
 			temp.update(chars);
 		}}
@@ -40,7 +41,7 @@ public class Handler {
 	{
 		chars.remove(tem);
 	}
- public void createLevel() {
+ /**public void createLevel() {
 	 for (int xx=0; xx<Game.WIDTH*2 ;xx+=32) {
 		addObject(new PlatForm(xx,Game.HEIGHT-64,Tag.Block1));
 		
@@ -53,5 +54,5 @@ public class Handler {
 			addObject(new PlatForm(0,yy,Tag.Block1));
 			
 		 }
- }
+ }*/
 }

@@ -12,4 +12,6 @@ PlatForm(),
 Obstacle1(),
 Obstacle2(),
 Block1(),
+Block2(),
+Tree(),
 }

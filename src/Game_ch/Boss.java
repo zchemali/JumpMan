@@ -4,11 +4,15 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import Image_editors.Texture;
+
 public class Boss extends GameObjects{
 
-	public Boss(float x, float y, Tag tag) {
-		super(x, y, tag);
-		
+	
+
+	public Boss(float x, float y, Tag tag, Texture texture) {
+		super(x, y, tag, texture);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -7,12 +7,16 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import Image_editors.Texture;
+
 public class UpDown extends GameObjects {
-private final int MAX_COUNT=200;
-	public UpDown(float x, float y, Tag tag) {
-		super(x, y, tag);
+	private final int MAX_COUNT=200;
+public UpDown(float x, float y, Tag tag, Texture texture) {
+		super(x, y, tag, texture);
 		// TODO Auto-generated constructor stub
 	}
+
+
 
 	@Override
 	public void update(ArrayList<GameObjects> Objects) {

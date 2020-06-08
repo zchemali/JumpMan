@@ -2,6 +2,8 @@ package Game_ch;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+
+import Image_editors.Texture;
 /**
  * 
  * @author zchem
@@ -19,12 +21,14 @@ public abstract class GameObjects {
 	protected boolean falling;
 	protected boolean jumping;
 	public Tag tag;
+	Texture texture;
 	// constructor
- public GameObjects(float x,float y,Tag tag)
+ public GameObjects(float x,float y,Tag tag,Texture texture)
  {
 	 this.x=x;
 	 this.y=y;
 	 this.tag=tag;
+	 this.texture=texture;
  }
 	
 	public float getX() {

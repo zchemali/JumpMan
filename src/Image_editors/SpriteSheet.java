@@ -14,7 +14,7 @@ this.image=image;
 //crops the img
 public BufferedImage grabImage (int col,int row,int width,int height)
 {
-	BufferedImage img =image.getSubimage((col*32)-32, (row*32)-32, width, height);
+	BufferedImage img =image.getSubimage((col*width)-width, (row*height)-height, width, height);
 return img;
 }
 }

@@ -5,16 +5,19 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import Image_editors.Texture;
+
 public class MovingObsticale extends GameObjects{
 	private int count =0;
 	private final int MAX_COUNT=200;
-
-	public MovingObsticale(float x, float y, Tag tag) {
-		super(x, y, tag);
+	public MovingObsticale(float x, float y, Tag tag, Texture texture) {
+		super(x, y, tag, texture);
 		velx=2;
-		
 	}
 
+	
+
+	
 	@Override
 	public void update(ArrayList<GameObjects> Objects) {
 		if(count==MAX_COUNT)

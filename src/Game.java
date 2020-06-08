@@ -6,6 +6,7 @@
  */
 import Game_ch.*;
 import Image_editors.BufferedImageLoader;
+import Image_editors.Texture;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -27,6 +28,7 @@ public class Game extends Canvas implements Runnable {
 	private Camera cam;
 	private int frames=0;
 	private BufferedImage image;
+	static Texture texture;
 	//constructor initializing variables
 	public Game()
 	{	BufferedImageLoader loader =new BufferedImageLoader();
@@ -35,6 +37,7 @@ public class Game extends Canvas implements Runnable {
 		window =new Window(WIDTH,HEIGHT,this);
 		
 		handler =new Handler();
+		texture=new Texture();
 		image=loader.loadImage("/Map.PNG");
 		loadMap(image);
 		//handler.createLevel();
@@ -43,7 +46,7 @@ public class Game extends Canvas implements Runnable {
 		//handler.addObject(new Player(70, 100, Tag.Player));
 		
 		cam=new Camera(0,0);
-		System.out.println(handler.chars.size());
+		//System.out.println(handler.chars.size());
 		
 	}
 	
@@ -68,11 +71,11 @@ public class Game extends Canvas implements Runnable {
 				update();
 			}catch (Exception e)
 			
-		{System.out.println(e);}
+		{System.err.println("GameLoop Line 74");}
 		ticks++;
 		try {
 			render();}catch (Exception e)
-		{System.out.println(e);}
+		{System.err.println("Game Loop Line 78");}
 			frames++;
 		long diff=System.currentTimeMillis()-before;
 		long sleep=target-diff;
@@ -134,8 +137,7 @@ public class Game extends Canvas implements Runnable {
 		Graphics g;
 		g=bs.getDrawGraphics();
 		Graphics2D g2d =(Graphics2D) g;
-		g.drawString(String.valueOf(frames), 50, 50);
-		g.setColor(Color.BLACK);
+		g.setColor(new Color(73,194,255));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		//Shifting th x,y coordinates by tx=Width/2 and ty=height/2
 		g2d.translate(cam.getX(), cam.getY());
@@ -164,24 +166,33 @@ public class Game extends Canvas implements Runnable {
 				int red =(pixel >> 16) & 0xff;
 				int green =(pixel >> 8) & 0xff;
 				int blue =(pixel) & 0xff;
+				//white blocks
 				if (red==255 && green ==255 && blue==255)
 				{
 					//System.out.println(red + green+ blue);
-					handler.addObject(new PlatForm (xx*32,yy*32,Tag.Block1) );
+					handler.addObject(new PlatForm (xx*32,yy*32,Tag.Block1,texture) );
+				}
+				//light grey vlocks
+				else if (red==64 && green==64 &&blue ==64) {
+					handler.addObject(new PlatForm (xx*32,yy*32,Tag.Block2,texture) );	
 				}
 				else if(red==128 && green==128 && blue==128) {
-					handler.addObject(new Player (xx*32,yy*32-90,Tag.Player));
+					handler.addObject(new Player (xx*32,yy*32-90,Tag.Player,texture));
 				}
 				else if (red ==0 && green==255 && blue==255) {
-					handler.addObject(new MovingObsticale(xx*32, yy*32, Tag.Obstacle1));
+					handler.addObject(new MovingObsticale(xx*32, yy*32, Tag.Obstacle1,texture));
 				}
 				else if (red ==255 && green==0 && blue==0) {
-					handler.addObject(new UpDown(xx*32, yy*32, Tag.Obstacle2));
+					handler.addObject(new UpDown(xx*32, yy*32, Tag.Obstacle2,texture));
+				}
+				else if (red ==0 && green==255 && blue==33) {
+					handler.addObject(new PlatForm(xx*32, yy*32, Tag.Tree,texture));
 				}
 			}
 			
 		}
 		
 	}
+	
 
 }
