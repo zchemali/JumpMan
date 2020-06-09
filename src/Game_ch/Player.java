@@ -17,17 +17,25 @@ public class Player extends GameObjects{
 	private static final float MAX_VELY = 4;
 	private int width=48,height=92;
 	private boolean jumping;
-	BufferedImage [] temp;
+	BufferedImage []temp,temp2,temp3;
+	BufferedImage [] left,right,jump,idl;
 	// you can have here multiple animation example walking left right jumping etc.
-	private Animation animation;
+	private Animation walkingRight,walkingLeft,jumpingUp,idle;
 	public Player(float x, float y, Tag tag, Texture texture) {
 		super(x, y, tag, texture);
 		falling=true;
 		count=0;
 		setJumping(false);
 		setGravity(0.2f);
-		temp=texture.getPlayer();
-		animation =new Animation (4,temp[0],temp[1],temp[2]);
+		temp=texture.getPlayerRight();
+		//for(int col=0 ; col<temp[0].length;col++)
+		//	right[col]=temp[0][col];
+		walkingRight =new Animation (4,temp);
+		temp2=texture.getPlayerLeft();
+		walkingLeft=new Animation (4,temp2);
+		temp3=texture.getPlayerIdle();
+		idle=new Animation (4,temp3);
+		velx=0;
 	}
 
 
@@ -99,7 +107,11 @@ public class Player extends GameObjects{
 		
 		}
 		try {
-		animation.runAnimation();}catch (Exception e) { System.err.println("Player>update> line 101");}
+			//this will shuffle through images of the player
+		walkingRight.runAnimation(); 
+		idle.runAnimation();
+		walkingLeft.runAnimation();}catch (Exception e) { System.err.println("Player>update> line 101");
+		}
 		
 		}
 		
@@ -111,16 +123,19 @@ public class Player extends GameObjects{
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.black);
-		//g.fillRect((int)x, (int)y, width, height);
-		if (velx!=0)
-		animation.drawAnimation(g, (int)x, (int)y, width, height);
-		else //draw idle animation
-			g.drawImage(temp[0], (int)x , (int) y, width, height+9, null);
+		if (velx>0)
+		{walkingRight.drawAnimation(g, (int)x, (int)y+30, width, height-30);}
+		else if (velx<0)
+		{walkingLeft.drawAnimation(g, (int)x, (int)y+30, width, height-30);}
+		else 
+			{idle.drawAnimation(g, (int)x, (int)y+30, width-10, height-30);}
+		//else //draw idle animation
+		//.drawImage(temp[0], (int)x , (int) y, width, height+9, null);
 		//g.drawImage(temp[0], x, y, bgcolor, observer)
-		//Graphics2D g2d;
-		//g2d=(Graphics2D) g;
+		/*Graphics2D g2d;
+		g2d=(Graphics2D) g;
 		
-		/*g.setColor(Color.BLUE);
+		g.setColor(Color.BLUE);
 		
 		g2d.draw(getBounds());
 		g2d.draw(getBoundsLeft());
@@ -131,20 +146,20 @@ public class Player extends GameObjects{
 	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
-		return new Rectangle((int)x+5,(int)y+75 ,width,height-72);
+		return new Rectangle((int)x,(int)y+75 ,width-10,height-72);
 
 	}
 	public Rectangle getBoundsLeft() {
 		// TODO Auto-generated method stub
-		return new Rectangle((int)x-2,(int)y+2,width-42,height-9);
+		return new Rectangle((int)x-2,(int)y+20,width-42,height-20);
 }
 	public Rectangle getBoundsRight() {
 		// TODO Auto-generated method stub
-		return new Rectangle((int)x+44,(int)y-2,width-42,height-9);
+		return new Rectangle((int)x+35,(int)y+20,width-42,height-20);
 }
 	public Rectangle getBoundsTop() {
 		// TODO Auto-generated method stub
-		return new Rectangle((int)x+5,(int)y,width-10,height-70);
+		return new Rectangle((int)x,(int)y+20,width-10,height-70);
 }
 
 

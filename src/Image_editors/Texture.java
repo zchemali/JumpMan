@@ -11,7 +11,9 @@ public class Texture {
 SpriteSheet bs,ps;//bs=blocksheet ps=playersheet
 private BufferedImage tile=null,character=null;
 public BufferedImage [] blocks =new BufferedImage[5];
-public BufferedImage [] player =new BufferedImage[5];
+public BufferedImage [] playerRight =new BufferedImage[10];
+public BufferedImage [] playerLeft =new BufferedImage[10];
+public BufferedImage [] playerIdle =new BufferedImage[10];
 public Texture() {
 	BufferedImageLoader loader =new BufferedImageLoader();
 	
@@ -28,17 +30,26 @@ public Texture() {
 	
 }
 
+
+		
+
+
 private void getPlayerImages() {
-	player[0]=ps.grabImage(1, 1, 32, 32);
-	player[1]=ps.grabImage(2, 1, 32, 32);
-	player[2]=ps.grabImage(3, 1, 32, 32);
-	player[3]=ps.grabImage(4, 1, 32, 32);
+	for (int i =0 ;i<playerRight.length;i++)
+	{
+		playerRight [i]=ps.grabImage(i+1, 1, 32, 32);
+		playerIdle [i]=ps.grabImage(i+1, 3, 32, 32);	
+	
+		playerLeft [i]=ps.grabImage(i+1, 2, 32, 32);
+	
+	
+	}
 }
 
 private void getBlockImages() {
 	for (int i =0 ;i<blocks.length;i++)
 	{ blocks[i]=bs.grabImage(i+1, 1, 32, 32);
-	System.out.println(i);
+	//System.out.println(i);
 }
 	blocks[4]=ps.grabImage(1, 2, 32, 32);}
 
@@ -46,9 +57,15 @@ public BufferedImage[] getBlocks() {
 	return blocks;
 }
 
-public BufferedImage[] getPlayer() {
-	return player;
+public BufferedImage[] getPlayerRight() {
+	return playerRight;
+}
+public BufferedImage[] getPlayerLeft() {
+	return playerLeft;
 }
 
+public BufferedImage[] getPlayerIdle() {
+	return playerIdle;
+}
 
 }

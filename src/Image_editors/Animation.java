@@ -13,13 +13,14 @@ int speed,frames,index=0,count=0;
 
 private BufferedImage[] images;
 private BufferedImage currentImage;
-public Animation (int speed , BufferedImage ... args) {
+public Animation (int speed , BufferedImage [] args) {
 	this.speed=speed;
 	images=new BufferedImage[args.length];//setting images to length of passed array
 	for (int i =0 ;i<args.length;i++) {
 		images[i]=args[i];
 		
 	}
+	
 	frames=args.length;
 	
 }

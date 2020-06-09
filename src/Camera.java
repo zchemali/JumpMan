@@ -9,8 +9,8 @@ public class Camera {
 		this.y=y;}
 		public void update (GameObjects player)
 		{
-			x=-player.getX()+Game.WIDTH/2;//we are saying to shift the coordinate system by 1/2 the Width of the game
-			y=-player.getY()+Game.HEIGHT/2;//we are saying to shift the coordinate system by 1/2 the Width of the game
+			x=-player.getX()+Game.WIDTH/4;//we are saying to shift the coordinate system by 1/2 the Width of the game
+			y=-player.getY()+Game.HEIGHT/2;//we are saying to shift the coordinate system by 1/2 the height of the game
 		}
 	
 	public float getX() {

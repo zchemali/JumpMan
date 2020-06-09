@@ -27,7 +27,7 @@ public class Game extends Canvas implements Runnable {
 	private Actions actions; 
 	private Camera cam;
 	private int frames=0;
-	private BufferedImage image;
+	private BufferedImage image,backGround,backGround2,backGround3;
 	static Texture texture;
 	//constructor initializing variables
 	public Game()
@@ -35,7 +35,8 @@ public class Game extends Canvas implements Runnable {
 		
 		thread1=new Thread(this);
 		window =new Window(WIDTH,HEIGHT,this);
-		
+		backGround=loader.loadImage("/country-platform-back.png");
+		backGround2=loader.loadImage("/country-platform-tiles-example.png");
 		handler =new Handler();
 		texture=new Texture();
 		image=loader.loadImage("/Map.PNG");
@@ -86,15 +87,15 @@ public class Game extends Canvas implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		else
+		/*else
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 		if((System.currentTimeMillis()-timer)>1000) {
-			//System.out.println(frames);
+			System.out.println(frames);
 			frames=0;
 			timer+=1000;
 		}
@@ -137,14 +138,18 @@ public class Game extends Canvas implements Runnable {
 		Graphics g;
 		g=bs.getDrawGraphics();
 		Graphics2D g2d =(Graphics2D) g;
-		g.setColor(new Color(73,194,255));
+		g.setColor(new Color(130,182,255));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		//Shifting th x,y coordinates by tx=Width/2 and ty=height/2
 		g2d.translate(cam.getX(), cam.getY());
+		for (double xx=-200;xx<=6000;xx+=200) {
+		g.drawImage(backGround,(int) xx, 200, 1000,1000, this);
+		g2d.drawImage(backGround2,(int) xx, 300, 1000,700, this);}
 		handler.render(g);
 		
 		g2d.translate(-cam.getX(),-cam.getY());
 	/**	for (int i =0 ;i<5;i++)
+	 * 
 		{	g.drawImage(player[i], 100, 100,50,60,this);
 		//System.out.println(i);
 		}**/
@@ -176,7 +181,7 @@ public class Game extends Canvas implements Runnable {
 				else if (red==64 && green==64 &&blue ==64) {
 					handler.addObject(new PlatForm (xx*32,yy*32,Tag.Block2,texture) );	
 				}
-				else if(red==128 && green==128 && blue==128) {
+				else if(red==0 && green==0 && blue==128) {
 					handler.addObject(new Player (xx*32,yy*32-90,Tag.Player,texture));
 				}
 				else if (red ==0 && green==255 && blue==255) {
@@ -185,9 +190,9 @@ public class Game extends Canvas implements Runnable {
 				else if (red ==255 && green==0 && blue==0) {
 					handler.addObject(new UpDown(xx*32, yy*32, Tag.Obstacle2,texture));
 				}
-				else if (red ==0 && green==255 && blue==33) {
-					handler.addObject(new PlatForm(xx*32, yy*32, Tag.Tree,texture));
-				}
+				//else if (red ==0 && green==255 && blue==33) {
+					//handler.addObject(new PlatForm(xx*32, yy*32, Tag.Tree,texture));
+				//}
 			}
 			
 		}
