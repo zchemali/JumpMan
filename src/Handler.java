@@ -12,21 +12,21 @@ import Game_ch.*;
  */
 public class Handler {
 	// creatig an array of all GameObjects
-	ArrayList <GameObjects> chars=new ArrayList();
+	ArrayList <GameObjects> gameObjects=new ArrayList();
 	private GameObjects temp;
 
 	// this method will call update in all of the GameObjects created
 	public void update() {
 		
-		for(int i=0;i<chars.size();i++)
+		for(int i=0;i<gameObjects.size();i++)
 			
-		{	temp=chars.get(i);
-			temp.update(chars);
+		{	temp=gameObjects.get(i);
+			temp.update(gameObjects);
 		}}
 	// this method will call render in all of the GameObjects created
 		public void render(Graphics g) {
-			for(int i=0;i<chars.size();i++)
-			{	temp=chars.get(i);
+			for(int i=0;i<gameObjects.size();i++)
+			{	temp=gameObjects.get(i);
 				
 				temp.render(g);
 			}
@@ -35,11 +35,11 @@ public class Handler {
 	
 	public void addObject (GameObjects tem)
 	{
-		chars.add(tem);
+		gameObjects.add(tem);
 	}
 	public void removeObject (GameObjects tem)
 	{
-		chars.remove(tem);
+		gameObjects.remove(tem);
 	}
  /**public void createLevel() {
 	 for (int xx=0; xx<Game.WIDTH*2 ;xx+=32) {
@@ -55,4 +55,9 @@ public class Handler {
 			
 		 }
  }*/
+	public void createEnemy() {
+		for(int xx=0;xx< Game.WIDTH*2;xx+=300) {
+			addObject(new Enemy(xx, 0, Tag.Enemy, null));
+		}
+	}
 }

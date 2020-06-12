@@ -16,7 +16,6 @@ import Image_editors.Texture;
 public class Player extends GameObjects{
 	private static final float MAX_VELY = 4;
 	private int width=48,height=92;
-	private boolean jumping;
 	BufferedImage []temp,temp2,temp3;
 	BufferedImage [] left,right,jump,idl;
 	// you can have here multiple animation example walking left right jumping etc.
@@ -30,12 +29,14 @@ public class Player extends GameObjects{
 		temp=texture.getPlayerRight();
 		//for(int col=0 ; col<temp[0].length;col++)
 		//	right[col]=temp[0][col];
+		//instantiating the animations here by passing the sequece of images
 		walkingRight =new Animation (4,temp);
 		temp2=texture.getPlayerLeft();
 		walkingLeft=new Animation (4,temp2);
 		temp3=texture.getPlayerIdle();
 		idle=new Animation (4,temp3);
 		velx=0;
+		health=200;
 	}
 
 
@@ -62,14 +63,14 @@ public class Player extends GameObjects{
 			//System.out.println(temp.x);
 			if (temp.tag==Tag.Block1 || temp.tag==Tag.Block2 || temp.tag==Tag.Tree) {
 				//System.out.println("yes");
-				if(getBounds().intersects(temp.getBounds())) {
+				if(getBoundsBottom().intersects(temp.getBounds())) {
 					vely=0;
 					setJumping(true);
 					falling=false;
 					
 					//System.out.println("intersection"+jumping);
 					}
-				else if(!getBounds().intersects(temp.getBounds()))
+				else if(!getBoundsBottom().intersects(temp.getBounds()))
 					{falling=true;
 					
 					//System.out.println("no intersection"+jumping);
@@ -90,6 +91,7 @@ public class Player extends GameObjects{
 					y=getY()+4;
 							
 					}
+					
 				
 				}
 			//sets collision for moving objects s
@@ -102,10 +104,23 @@ public class Player extends GameObjects{
 				setJumping(true);
 				//System.out.println("YESS");
 				}
+				
 			}
+			else if (temp.tag==Tag.Enemy )
+				
+			if(attacking) {
+				if(getBoundsSwordRight().intersects(temp.getBounds()))
+				{	Objects.get(i).setHealth(health-10);
+				
+				if(Objects.get(i).getHealth()<=10)					
+				{Objects.remove(i);
+					System.out.println("Attack");}}
 		
 		
 		}
+			else if(getBoundsSwordRight().intersects(temp.getBounds())) {
+				System.out.println(Objects.get(i).getHealth());
+				health-=1;}}
 		try {
 			//this will shuffle through images of the player
 		walkingRight.runAnimation(); 
@@ -122,6 +137,9 @@ public class Player extends GameObjects{
 
 	@Override
 	public void render(Graphics g) {
+		//g.setColor(Color.BLACK);
+		//g.fillRect((int)x-150, (int)y-280, health, 20);
+		
 		g.setColor(Color.black);
 		if (velx>0)
 		{walkingRight.drawAnimation(g, (int)x, (int)y+30, width, height-30);}
@@ -129,25 +147,36 @@ public class Player extends GameObjects{
 		{walkingLeft.drawAnimation(g, (int)x, (int)y+30, width, height-30);}
 		else 
 			{idle.drawAnimation(g, (int)x, (int)y+30, width-10, height-30);}
+		
 		//else //draw idle animation
 		//.drawImage(temp[0], (int)x , (int) y, width, height+9, null);
 		//g.drawImage(temp[0], x, y, bgcolor, observer)
-		/*Graphics2D g2d;
+		Graphics2D g2d;
+		
 		g2d=(Graphics2D) g;
 		
-		g.setColor(Color.BLUE);
+		g.setColor(Color.GREEN);
 		
-		g2d.draw(getBounds());
-		g2d.draw(getBoundsLeft());
+		g.fillRect((int)x-150, (int)y-280, health, 20);
+	g.setColor(Color.BLACK);
+		g2d.drawRect((int)x-150, (int)y-280, 200, 20);
+		//g2d.draw(getBoundsBottom());
+		/*g2d.draw(getBoundsLeft());
 		g2d.draw(getBoundsRight());
 		g2d.draw(getBoundsTop());*/
 	}
 //getbounds method to represet the boundary of the player
 	@Override
+	/**
+	 * FDD
+	 */
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
-		return new Rectangle((int)x,(int)y+75 ,width-10,height-72);
+		return new Rectangle((int)x-5,(int)y ,width,height);
 
+	}
+	public Rectangle getBoundsBottom() {
+		return new Rectangle((int)x,(int)y+75 ,width-10,height-72);
 	}
 	public Rectangle getBoundsLeft() {
 		// TODO Auto-generated method stub
@@ -161,8 +190,12 @@ public class Player extends GameObjects{
 		// TODO Auto-generated method stub
 		return new Rectangle((int)x,(int)y+20,width-10,height-70);
 }
-
-
+public Rectangle getBoundsSwordRight() {
+	return new Rectangle((int)x+20, (int)y+50, width-20, height-50);
+}
+public Rectangle getBoundsSwordLeft() {
+	return new Rectangle((int)x,(int)y, width, height);
+}
 
 	public int getCount() {
 		return count;

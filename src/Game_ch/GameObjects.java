@@ -20,6 +20,24 @@ public abstract class GameObjects {
 	protected float gravity;
 	protected boolean falling;
 	protected boolean jumping;
+	protected boolean attacking;
+	protected int health;
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	public boolean isAttacking() {
+		return attacking;
+	}
+
+	public void setAttacking(boolean attacking) {
+		this.attacking = attacking;
+	}
+
 	public Tag tag;
 	Texture texture;
 	// constructor

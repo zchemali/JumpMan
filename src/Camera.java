@@ -1,5 +1,9 @@
 import Game_ch.*;
-//animating the platform
+/*
+ * This class simply translates the x,y coordinates of the player. You have to initialize it in the Game constructor
+ * then invoke the update section in update of the game class
+ * then pass the players class to the update 
+ */
 public class Camera {
 
 	float x,y;

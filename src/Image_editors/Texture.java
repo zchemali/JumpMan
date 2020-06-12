@@ -33,7 +33,7 @@ public Texture() {
 
 		
 
-
+//you could have a 2D array
 private void getPlayerImages() {
 	for (int i =0 ;i<playerRight.length;i++)
 	{

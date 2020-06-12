@@ -14,4 +14,6 @@ Obstacle2(),
 Block1(),
 Block2(),
 Tree(),
+Health(),
+Enemy(),
 }

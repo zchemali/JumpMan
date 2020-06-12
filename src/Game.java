@@ -41,8 +41,8 @@ public class Game extends Canvas implements Runnable {
 		texture=new Texture();
 		image=loader.loadImage("/Map.PNG");
 		loadMap(image);
-		//handler.createLevel();
-		this.requestFocusInWindow();
+		handler.createEnemy();
+		handler.addObject(new HealthPlayer(0, 0, Tag.Health, null));
 		this.addKeyListener(new Actions(handler));
 		//handler.addObject(new Player(70, 100, Tag.Player));
 		
@@ -120,10 +120,10 @@ public class Game extends Canvas implements Runnable {
 	//this method will be used to update the x,y coordinates of player/obstacles 
 	public void update() {
 		handler.update();
-		for (int i=0;i<handler.chars.size();i++)
+		for (int i=0;i<handler.gameObjects.size();i++)
 		{
-			if(handler.chars.get(i).tag==Tag.Player)
-				cam.update(handler.chars.get(i));}
+			if(handler.gameObjects.get(i).tag==Tag.Player)
+				cam.update(handler.gameObjects.get(i));}
 	}
 	// this will update the graphics
 	//creating bufferstragtegy so it displays graphics faster

@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 /**
  * This Class creates the animation . it simply gets the buffererd immageds anf shuffles through them
  * based on a speed that is passed to it throught the constructor
+ *NOTE the runAnimation method must be invoked in the update section of the GameObject subclass
  * @author zchem
  *
  */
