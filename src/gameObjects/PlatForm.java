@@ -1,4 +1,4 @@
-package Game_ch;
+package gameObjects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import Image_editors.Texture;
+import imageHandling.Texture;
 /**
  * THis class is used to creat the platform blocks
  * @author zchem

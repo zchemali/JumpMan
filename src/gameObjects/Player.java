@@ -1,4 +1,4 @@
-package Game_ch;
+package gameObjects;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,8 +7,8 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import Image_editors.Animation;
-import Image_editors.Texture;
+import imageHandling.Animation;
+import imageHandling.Texture;
 
 /**
  * This is the player class
@@ -64,6 +64,9 @@ public class Player extends GameObjects {
 					setJumping(true);// now the player can jump
 					falling = false;// cant fall anymore so gravity is disabled
 				}
+				else if(!getBoundsBottom().intersects(temp.getBounds()))
+					setFalling(true);//so that player is falling if its not intersecting
+				
 
 				// Players left side collision with the platform
 				if (getBoundsLeft().intersects(temp.getBounds())) {

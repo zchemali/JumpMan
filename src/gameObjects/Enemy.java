@@ -1,6 +1,6 @@
-package Game_ch;
+package gameObjects;
 
-import static Game_ch.Tag.Block1;
+import static gameObjects.Tag.Block1;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import Image_editors.Texture;
+import imageHandling.Texture;
 /**
  * This is the small enemy classes prior to Boss
  * @author zchem

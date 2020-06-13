@@ -1,7 +1,8 @@
+package gameSetup;
 
-import Game_ch.*;
-import Image_editors.BufferedImageLoader;
-import Image_editors.Texture;
+import gameObjects.*;
+import imageHandling.BufferedImageLoader;
+import imageHandling.Texture;
 
 import java.awt.Canvas;
 import java.awt.Color;

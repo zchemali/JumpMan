@@ -1,5 +1,4 @@
-
-package Game_ch;
+package gameObjects;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,21 +6,21 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import Image_editors.Texture;
+import imageHandling.Texture;
 
 /**
- * This class for objects that move up and down.Note I could combine them in
- * platform but it will make code longer Next step is to combine moving objects
- * in separate class
+ * This class is for obstacles that move left and right
  * 
  * @author zchem
  *
  */
-public class UpDown extends GameObjects {
+public class MovingObsticale extends GameObjects {
+	private int count = 0;
 	private final int MAX_COUNT = 200;
 
-	public UpDown(float x, float y, Tag tag, Texture texture) {
+	public MovingObsticale(float x, float y, Tag tag, Texture texture) {
 		super(x, y, tag, texture);
+		velx = 2;
 	}
 
 	@Override
@@ -29,11 +28,11 @@ public class UpDown extends GameObjects {
 		if (count == MAX_COUNT)
 			count = 0;
 		if (count < 100) {
-			y += 3;
+			x += 1;
 			count++;
 		}
 		if (count >= 100) {
-			y -= 3;
+			x -= 1;
 			count++;
 		}
 
@@ -43,7 +42,7 @@ public class UpDown extends GameObjects {
 	public void render(Graphics g) {
 		g.setColor(Color.red);
 		g.fillRect((int) x, (int) y, 100, 30);
-		// drawing boundaries
+//drawing boundaries
 		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(Color.WHITE);
 		g2d.draw(getBounds());

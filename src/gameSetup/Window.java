@@ -1,3 +1,4 @@
+package gameSetup;
 
 /**
  * This is just the JFrame created and its invoked from @Game constructor

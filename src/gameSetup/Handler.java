@@ -1,7 +1,8 @@
+package gameSetup;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import Game_ch.*;
+import gameObjects.*;
 
 /**
  * This class handles all of the @GameObjects such as players or obstacles

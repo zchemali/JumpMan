@@ -1,4 +1,5 @@
-import Game_ch.*;
+package gameSetup;
+import gameObjects.*;
 
 /**
  * This class simply translates the x,y coordinates of the player. You have to

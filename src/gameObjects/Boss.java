@@ -1,10 +1,10 @@
-package Game_ch;
+package gameObjects;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import Image_editors.Texture;
+import imageHandling.Texture;
 /**
  * Main Boss Class, still need to code
  * @author zchem
