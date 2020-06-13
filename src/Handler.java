@@ -55,7 +55,7 @@ public class Handler {
 	/**
 	 * Whenver we want to remove an Object from the array
 	 * 
-	 * @param tem used as a refrence for the GameObject
+	 * @param tem used as a reference for the GameObject
 	 */
 	public void removeObject(GameObjects tem) {
 		gameObjects.remove(tem);

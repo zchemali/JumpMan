@@ -5,7 +5,11 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import Image_editors.Texture;
-
+/**
+ * Main Boss Class, still need to code
+ * @author zchem
+ *
+ */
 public class Boss extends GameObjects{
 
 	

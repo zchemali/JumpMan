@@ -9,10 +9,14 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import Image_editors.Texture;
-
+/**
+ * This is the small enemy classes prior to Boss
+ * @author zchem
+ *
+ */
 public class Enemy extends GameObjects{
 
-	int maxCount,width,height;
+	int maxCount,width,height;//used for dimensions of the enemy temp.
 	public Enemy(float x, float y, Tag tag, Texture texture) {
 		super(x, y, tag, texture);
 		health=50;
@@ -32,7 +36,7 @@ public class Enemy extends GameObjects{
 			vely=gravity;
 		
 		
-		
+		//Used so that the enemeys dont fall below the platform
 		for (int i=0 ;i<Objects.size();i++) {
 			GameObjects temp =Objects.get(i);
 			 if(temp.tag==Block1 )
