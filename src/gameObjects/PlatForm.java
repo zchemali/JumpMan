@@ -1,4 +1,4 @@
-package Game_ch;
+package gameObjects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -6,15 +6,26 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import Image_editors.Texture;
-
+import imageHandling.Texture;
+/**
+ * THis class is used to creat the platform blocks
+ * @author zchem
+ *
+ */
 public class PlatForm  extends GameObjects{
 
-
+//Temp array for storing the images
 BufferedImage [] temp;
+/**
+ * Constructor
+ * @param x
+ * @param y
+ * @param tag
+ * @param texture
+ */
 	public PlatForm(float x, float y, Tag tag, Texture texture) {
 		super(x, y, tag, texture);
-		temp=texture.getBlocks();
+		temp=texture.getBlocks();//grabbing the images from the texture variable
 	}
 
 	@Override
@@ -24,6 +35,7 @@ BufferedImage [] temp;
 
 	@Override
 	public void render(Graphics g) {
+		//if/else statements to create different blocks/trees/ladders...etc
 		if(tag==Tag.Block1)
 		g.drawImage(temp[0],(int) x, (int)y, 32, 32,null);
 		else if (tag==Tag.Block2)
