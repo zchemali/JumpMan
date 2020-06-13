@@ -1,10 +1,4 @@
 
-/**
- * 
- * @author zchem
- * @since
- * @version 1.0
- */
 import Game_ch.*;
 import Image_editors.BufferedImageLoader;
 import Image_editors.Texture;
