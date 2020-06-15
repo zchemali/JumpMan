@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import gameSetup.Game;
 import imageHandling.Animation;
 import imageHandling.Texture;
 
@@ -19,16 +20,15 @@ import imageHandling.Texture;
 public class Player extends GameObjects {
 	private static final float MAX_VELY = 4;// used for setting the limit on Gravity
 	private int width = 48, height = 92;// dimensions of the player
-	BufferedImage[] temp, temp2, temp3;// Different arrays to store different types of movements
-	BufferedImage[] left, right, jump, idl;
-	private Animation walkingRight, walkingLeft, jumpingUp, idle;// Creating Animation variables that will shuffle
+	BufferedImage[] temp, temp2, temp3,temp4;// Different arrays to store different types of movements
+	private Animation walkingRight, walkingLeft, jumpingUp, idle,attackingRight;// Creating Animation variables that will shuffle
 																	// through the images
 
 	public Player(float x, float y, Tag tag, Texture texture) {
 		super(x, y, tag, texture);
 		falling = true;// setting falling to true
 		setJumping(false);// setting jumping to false initially
-		setGravity(0.2f);// setting gravity
+		setGravity(0.2f);// setting gravityj
 		// grabbing the images from texture class and instantiating the animation
 		temp = texture.getPlayerRight();
 		walkingRight = new Animation(4, temp);
@@ -36,15 +36,30 @@ public class Player extends GameObjects {
 		walkingLeft = new Animation(4, temp2);
 		temp3 = texture.getPlayerIdle();
 		idle = new Animation(4, temp3);
+		temp4=texture.getPlayerAttaackRight();
+		attackingRight=new Animation(1, temp4);
 		velx = 0;
-		health = 2000;// setting initial health lvl
+		health = 200;// setting initial health lvl
 	}
 
 	@Override
 	public void update(ArrayList<GameObjects> Objects) {
-		// setting the x,y logic
-		x += velx;
-		y += vely;
+		//temp checks if falling in sky
+		if(y>800){
+			x=100;
+			y=100;
+			health=200;	
+		}
+		//checks health temp 
+if(health>=0 )
+{	x += velx;
+	y += vely;}
+else {
+	x=100;
+	y=100;
+	health=200;
+}
+	
 
 		// setting gravity
 		if (falling) {
@@ -105,9 +120,10 @@ public class Player extends GameObjects {
 				// if the player attacks the enemy then reduce the enemys health
 				if (attacking) {
 					if (getBoundsSwordRight().intersects(temp.getBounds())) {
-						Objects.get(i).setHealth(health - 10);
+						Objects.get(i).setHealth(Objects.get(i).getHealth()- 5);
+						System.out.println(Objects.get(i).getHealth());
 						// removes the enemym if the enemys health dropped below 10
-						if (Objects.get(i).getHealth() <= 10) {
+						if (Objects.get(i).getHealth() <= 2) {
 							Objects.remove(i);
 						}
 					}
@@ -125,6 +141,7 @@ public class Player extends GameObjects {
 			walkingRight.runAnimation();
 			idle.runAnimation();
 			walkingLeft.runAnimation();
+			attackingRight.runAnimation();
 		} catch (Exception e) {
 			System.err.println("Player>update> line 101");
 		}
@@ -134,13 +151,18 @@ public class Player extends GameObjects {
 	@Override
 	public void render(Graphics g) {
 		// if/else statements to draw sprite images basd on players movement
-		if (velx > 0) {
+		 if(attacking)
+			{
+				attackingRight.drawAnimation(g,(int) x, (int)y+20, width+30, height-10);
+			}
+		 else if (velx > 0) {
 			walkingRight.drawAnimation(g, (int) x, (int) y + 30, width, height - 30);
 		} else if (velx < 0) {
 			walkingLeft.drawAnimation(g, (int) x, (int) y + 30, width, height - 30);
-		} else {
+		} else if (velx==0) {
 			idle.drawAnimation(g, (int) x, (int) y + 30, width - 10, height - 30);
 		}
+		
 		// drawing the health bar NOTE add if statement to change color to red if health
 		// is too low
 		Graphics2D g2d;

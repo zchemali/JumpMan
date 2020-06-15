@@ -46,9 +46,12 @@ public class Game extends Canvas implements Runnable {
 		texture = new Texture();// creating instance of Texture class w
 		image = loader.loadImage("/Map.PNG");// loading map image
 		loadMap(image);/** invoking a method in this class to create the map @see loadMap() */
-		handler.createEnemy();///////// Temp.
+		//handler.createEnemy();///////// Temp.
 		this.addKeyListener(new Actions(handler));// Creating actions
 		cam = new Camera(0, 0);// creating instance of camera class
+		for (int xx = 0; xx < Game.WIDTH * 2; xx += 300) {
+			handler.addObject(new Enemy(xx, 0, Tag.Enemy, texture));
+		}
 	}
 
 //main method where it calls the Constuctor	
@@ -96,7 +99,7 @@ public class Game extends Canvas implements Runnable {
 			 */
 			// prints FPS and resets Frames
 			if ((System.currentTimeMillis() - timer) > 1000) {
-				System.out.println("FPS: "+frames);
+				//System.out.println("FPS: "+frames);
 				frames = 0;
 				timer += 1000;
 			}
@@ -107,9 +110,18 @@ public class Game extends Canvas implements Runnable {
 
 	/**
 	 * Method to start the thread
+	 * @throws InterruptedException 
 	 */
+	public synchronized void waits()  {
+		try {
+			thread1.wait();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public synchronized void start() {
-
+		
 		thread1.start();
 		running = true;
 	}
@@ -131,10 +143,10 @@ public class Game extends Canvas implements Runnable {
 	public void update() {
 		handler.update();
 		for (int i = 0; i < handler.gameObjects.size(); i++) {
-			if (handler.gameObjects.get(i).tag == Tag.Player)
+			if (handler.gameObjects.get(i).tag == Tag.Player) {
 				cam.update(handler.gameObjects.get(i));
-		}
-	}
+		}}}
+	
 
 	/**
 	 * This method will update the graphics Creating Bufferstragtegy so it displays

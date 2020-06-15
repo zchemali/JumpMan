@@ -10,14 +10,18 @@ import java.awt.image.BufferedImage;
  *
  */
 public class Texture {
-	SpriteSheet bs, ps;// NOte: bs=blocksheet ps=playersheet
-	private BufferedImage tile = null, character = null;
+	SpriteSheet bs, ps,en;// NOte: bs=blocksheet ps=playersheet
+	private BufferedImage tile = null, character = null,enemy=null;
 	public BufferedImage[] blocks = new BufferedImage[5];// array for the block images
 // arrays for specific movemnet of the player
 	public BufferedImage[] playerRight = new BufferedImage[10];
 	public BufferedImage[] playerLeft = new BufferedImage[10];
 	public BufferedImage[] playerIdle = new BufferedImage[10];
-
+	public BufferedImage[] playerAttaackRight = new BufferedImage[10];
+	// aaray for movement of enemy 
+	public BufferedImage[] enemyIdle = new BufferedImage[8];
+	public BufferedImage[] enemyRun = new BufferedImage[8];
+	public BufferedImage[] enemyAttack = new BufferedImage[8];
 	/**
 	 * Constructor that will creat an instance of @BufferedImageLoader then will
 	 * load the images and invoke grabImage() in @SpriteSheet to crop Then store the
@@ -29,6 +33,8 @@ public class Texture {
 		try {
 			character = loader.loadImage("/PlayerSprite.png");
 			tile = loader.loadImage("/SpriteTile.png");
+			enemy=loader.loadImage("/HeavyBandit.png");
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -36,9 +42,20 @@ public class Texture {
 		// constructor
 		bs = new SpriteSheet(tile);
 		ps = new SpriteSheet(character);
+		en=new SpriteSheet(enemy);
 		getBlockImages();
 		getPlayerImages();
-
+		getEnemyImages();
+	}
+/**
+ * invoking method grabImage() in @SpriteSheet class to crop Enemy pictures
+ */
+	private void getEnemyImages() {
+		for(int i=0;i<enemyAttack.length;i++) {
+			enemyIdle[i] = en.grabImage(i+1, 1, 48, 48);
+			enemyRun[i] = en.grabImage( i+1, 2, 48, 48);
+			enemyAttack[i] = en.grabImage(i+1, 3, 48, 48);
+	}
 	}
 
 	/**
@@ -46,11 +63,11 @@ public class Texture {
 	 * arrays
 	 */
 	private void getPlayerImages() {
-		for (int i = 0; i < playerRight.length; i++) {
+		for (int i = 0; i < playerIdle.length; i++) {
 			playerRight[i] = ps.grabImage(i + 1, 1, 32, 32);
 			playerIdle[i] = ps.grabImage(i + 1, 3, 32, 32);
-
 			playerLeft[i] = ps.grabImage(i + 1, 2, 32, 32);
+			playerAttaackRight[i]=ps.grabImage(i+1, 4, 32, 32);
 
 		}
 	}
@@ -83,4 +100,21 @@ public class Texture {
 		return playerIdle;
 	}
 
+	public BufferedImage[] getEnemyIdle() {
+		return enemyIdle;
+	}
+
+	public BufferedImage[] getEnemyRun() {
+		return enemyRun;
+	}
+
+	public BufferedImage[] getEnemyAttack() {
+		return enemyAttack;
+	}
+
+	public BufferedImage[] getPlayerAttaackRight() {
+		return playerAttaackRight;
+	}
+
+	
 }

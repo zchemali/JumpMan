@@ -51,16 +51,16 @@ public class Actions implements KeyListener {
 		for (int j = 0; j < handler.gameObjects.size(); j++) {
 			GameObjects temp = handler.gameObjects.get(j);
 			if (temp.tag == Tag.Player) { // setting velocities
-				if (i == KeyEvent.VK_D)
+				if (i == KeyEvent.VK_D && !temp.isAttacking())
 					temp.setVelx(5);
-				if (i == KeyEvent.VK_A)
+				if (i == KeyEvent.VK_A&& !temp.isAttacking())
 					temp.setVelx(-5);
-				if (i == KeyEvent.VK_L)
+				if (i == KeyEvent.VK_L&& !temp.isAttacking())
 					temp.setAttacking(true);// this is used for attacking
 				// have another if for kunai throwing
 
 				// setting the jimping of player
-				if ((i == KeyEvent.VK_SPACE) && temp.isJumping()) { // you can only jump three times in a row
+				if ((i == KeyEvent.VK_SPACE) && temp.isJumping()&& !temp.isAttacking()) { // you can only jump three times in a row
 					if (count <= 3) {
 						temp.setVely(-5);
 						count += 1;
