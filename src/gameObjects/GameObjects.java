@@ -25,6 +25,8 @@ public abstract class GameObjects {
 	protected boolean jumping;
 	protected boolean attacking;
 	protected int health;
+	protected int pointer;
+	protected boolean throwing;
 	public Tag tag;
 	Texture texture;
 
@@ -126,4 +128,21 @@ public abstract class GameObjects {
 	public void setAttacking(boolean attacking) {
 		this.attacking = attacking;
 	}
+
+	public int getPointer() {
+		return pointer;
+	}
+
+	public void setPointer(int pointer) {
+		this.pointer = pointer;
+	}
+
+	public boolean isThrowing() {
+		return throwing;
+	}
+
+	public void setThrowing(boolean throwing) {
+		this.throwing = throwing;
+	}
+	
 }

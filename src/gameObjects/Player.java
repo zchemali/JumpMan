@@ -20,8 +20,8 @@ import imageHandling.Texture;
 public class Player extends GameObjects {
 	private static final float MAX_VELY = 4;// used for setting the limit on Gravity
 	private int width = 48, height = 92;// dimensions of the player
-	BufferedImage[] temp, temp2, temp3,temp4;// Different arrays to store different types of movements
-	private Animation walkingRight, walkingLeft, jumpingUp, idle,attackingRight;// Creating Animation variables that will shuffle
+	BufferedImage[] temp, temp2, temp3,temp4,temp5;// Different arrays to store different types of movements
+	private Animation walkingRight, walkingLeft, jumpingUp, idle,attackingRight,throwingRight;// Creating Animation variables that will shuffle
 																	// through the images
 
 	public Player(float x, float y, Tag tag, Texture texture) {
@@ -38,8 +38,11 @@ public class Player extends GameObjects {
 		idle = new Animation(4, temp3);
 		temp4=texture.getPlayerAttaackRight();
 		attackingRight=new Animation(1, temp4);
+		temp5=texture.getPlayerThrowRight();
+		throwingRight=new Animation(2, temp5);
 		velx = 0;
 		health = 200;// setting initial health lvl
+		pointer=1;//by default player facing rigth
 	}
 
 	@Override
@@ -142,6 +145,7 @@ else {
 			idle.runAnimation();
 			walkingLeft.runAnimation();
 			attackingRight.runAnimation();
+			throwingRight.runAnimation();
 		} catch (Exception e) {
 			System.err.println("Player>update> line 101");
 		}
@@ -150,15 +154,21 @@ else {
 
 	@Override
 	public void render(Graphics g) {
-		// if/else statements to draw sprite images basd on players movement
-		 if(attacking)
+		// if attacking and facing right
+		 if(attacking && pointer==1)
 			{
-				attackingRight.drawAnimation(g,(int) x, (int)y+20, width+30, height-10);
+				attackingRight.drawAnimation(g,(int) x, (int)y+22, width+30, height-16);
 			}
+		// if throwing and facing right
+		 else if(throwing && pointer==1)
+		 {
+			 throwingRight.drawAnimation(g, (int) x-20,(int)y+28, width+20, height-25);
+		 }
+		 
 		 else if (velx > 0) {
-			walkingRight.drawAnimation(g, (int) x, (int) y + 30, width, height - 30);
+			walkingRight.drawAnimation(g, (int) x, (int) y + 35, width, height - 30);
 		} else if (velx < 0) {
-			walkingLeft.drawAnimation(g, (int) x, (int) y + 30, width, height - 30);
+			walkingLeft.drawAnimation(g, (int) x, (int) y + 35,width, height - 30);
 		} else if (velx==0) {
 			idle.drawAnimation(g, (int) x, (int) y + 30, width - 10, height - 30);
 		}

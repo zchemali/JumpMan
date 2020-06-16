@@ -14,4 +14,6 @@ Block2(),
 Tree(),
 Health(),
 Enemy(),
+KunaiRight(),
+KunaiLeft(),
 }

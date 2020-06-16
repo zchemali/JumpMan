@@ -55,6 +55,12 @@ public class Enemy extends GameObjects{
 				{setFalling(false);
 				y=temp.getY()-30;}
 			}
+			 if(temp.tag==Tag.KunaiLeft || temp.tag==Tag.KunaiRight )
+			 {
+				 if(getBounds().intersects(temp.getBounds())) {
+					 Objects.remove(i);
+				 }
+			 }
 			 
 			
 		}

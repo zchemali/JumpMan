@@ -18,7 +18,7 @@ import gameObjects.*;
 public class Actions implements KeyListener {
 	private Handler handler;
 	int count = 0;// used for limiting number of jumps
-
+	int countKunai=0;
 	/**
 	 * This is a constructor that sets the handler variable in this class to @param
 	 * 
@@ -51,15 +51,28 @@ public class Actions implements KeyListener {
 		for (int j = 0; j < handler.gameObjects.size(); j++) {
 			GameObjects temp = handler.gameObjects.get(j);
 			if (temp.tag == Tag.Player) { // setting velocities
-				if (i == KeyEvent.VK_D && !temp.isAttacking())
-					temp.setVelx(5);
-				if (i == KeyEvent.VK_A&& !temp.isAttacking())
+				if (i == KeyEvent.VK_D && !temp.isAttacking() &&!temp.isThrowing())
+				{	temp.setVelx(5);
+				 	temp.setPointer(1);
+				}
+				if (i == KeyEvent.VK_A && !temp.isAttacking()&& !temp.isThrowing())
+					{
 					temp.setVelx(-5);
+					temp.setPointer(-1);
+					}
 				if (i == KeyEvent.VK_L&& !temp.isAttacking())
-					temp.setAttacking(true);// this is used for attacking
-				// have another if for kunai throwing
+					temp.setAttacking(true);// this is used for attacking animation
+				
+				if(i==KeyEvent.VK_K && !temp.isThrowing())
+					{temp.setThrowing(true);//sets throwing to true for animation
+					if(temp.getPointer()==1)//checks if player facing right
+					handler.addObject(new Kunai(temp.getX(), temp.getY(), Tag.KunaiRight, null));
+					else//if player facing opp direction
+						handler.addObject(new Kunai(temp.getX(), temp.getY(), Tag.KunaiLeft, null));
+					}
+				}
 
-				// setting the jimping of player
+				// setting the jumping of player
 				if ((i == KeyEvent.VK_SPACE) && temp.isJumping()&& !temp.isAttacking()) { // you can only jump three times in a row
 					if (count <= 3) {
 						temp.setVely(-5);
@@ -75,8 +88,8 @@ public class Actions implements KeyListener {
 
 				}
 			}
-		}
 	}
+	
 
 	/**
 	 * This method is used for when a key is released
@@ -95,7 +108,13 @@ public class Actions implements KeyListener {
 				if (i == KeyEvent.VK_W)
 					temp.setVely(0);
 				if (i == KeyEvent.VK_L)
-					temp.setAttacking(false);
+					temp.setAttacking(false);//if key released then stop animation of attacking
+				if(i==KeyEvent.VK_K )
+				{
+					temp.setThrowing(false);//if key released then stop animation of throwing
+					
+				}
+				
 				if (i == KeyEvent.VK_SPACE) {
 
 					temp.setFalling(true);// Whenever space key is released then sets falling to true so gravity can be

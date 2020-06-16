@@ -18,6 +18,7 @@ public class Texture {
 	public BufferedImage[] playerLeft = new BufferedImage[10];
 	public BufferedImage[] playerIdle = new BufferedImage[10];
 	public BufferedImage[] playerAttaackRight = new BufferedImage[10];
+	public BufferedImage[] playerThrowRight= new BufferedImage[10];
 	// aaray for movement of enemy 
 	public BufferedImage[] enemyIdle = new BufferedImage[8];
 	public BufferedImage[] enemyRun = new BufferedImage[8];
@@ -68,6 +69,7 @@ public class Texture {
 			playerIdle[i] = ps.grabImage(i + 1, 3, 32, 32);
 			playerLeft[i] = ps.grabImage(i + 1, 2, 32, 32);
 			playerAttaackRight[i]=ps.grabImage(i+1, 4, 32, 32);
+			playerThrowRight[i]=ps.grabImage(i+1, 6, 32, 32);
 
 		}
 	}
@@ -114,6 +116,9 @@ public class Texture {
 
 	public BufferedImage[] getPlayerAttaackRight() {
 		return playerAttaackRight;
+	}
+	public BufferedImage[] getPlayerThrowRight() {
+		return playerThrowRight;
 	}
 
 	
