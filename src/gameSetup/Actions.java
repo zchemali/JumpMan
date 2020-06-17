@@ -18,8 +18,8 @@ import gameObjects.*;
 public class Actions implements KeyListener {
 	private Handler handler;
 	int count = 0;// used for limiting number of jumps
-	int countKunai=0;
-	/**
+	int countKunai=10;//used to limit kunais thrown NOTE: add pick up elements to set this number 
+	/** 
 	 * This is a constructor that sets the handler variable in this class to @param
 	 * 
 	 * @param handler2 passed from the @Game Class
@@ -63,13 +63,15 @@ public class Actions implements KeyListener {
 				if (i == KeyEvent.VK_L&& !temp.isAttacking())
 					temp.setAttacking(true);// this is used for attacking animation
 				
-				if(i==KeyEvent.VK_K && !temp.isThrowing())
+				if(i==KeyEvent.VK_K && !temp.isThrowing() && countKunai>0)
 					{temp.setThrowing(true);//sets throwing to true for animation
 					if(temp.getPointer()==1)//checks if player facing right
 					handler.addObject(new Kunai(temp.getX(), temp.getY(), Tag.KunaiRight, null));
 					else//if player facing opp direction
 						handler.addObject(new Kunai(temp.getX(), temp.getY(), Tag.KunaiLeft, null));
+					countKunai--;
 					}
+				
 				}
 
 				// setting the jumping of player
