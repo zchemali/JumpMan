@@ -13,16 +13,21 @@ public class Texture {
 	SpriteSheet bs, ps,en;// NOte: bs=blocksheet ps=playersheet
 	private BufferedImage tile = null, character = null,enemy=null;
 	public BufferedImage[] blocks = new BufferedImage[5];// array for the block images
+	//Objects array
+	public BufferedImage[] objects = new BufferedImage[5];
 // arrays for specific movemnet of the player
 	public BufferedImage[] playerRight = new BufferedImage[10];
 	public BufferedImage[] playerLeft = new BufferedImage[10];
 	public BufferedImage[] playerIdle = new BufferedImage[10];
 	public BufferedImage[] playerAttaackRight = new BufferedImage[10];
+	public BufferedImage[] playerAttaackLeft=new BufferedImage[10];
 	public BufferedImage[] playerThrowRight= new BufferedImage[10];
+	public BufferedImage[] kunai=new BufferedImage[2];
 	// aaray for movement of enemy 
 	public BufferedImage[] enemyIdle = new BufferedImage[8];
 	public BufferedImage[] enemyRun = new BufferedImage[8];
 	public BufferedImage[] enemyAttack = new BufferedImage[8];
+	
 	/**
 	 * Constructor that will creat an instance of @BufferedImageLoader then will
 	 * load the images and invoke grabImage() in @SpriteSheet to crop Then store the
@@ -47,6 +52,7 @@ public class Texture {
 		getBlockImages();
 		getPlayerImages();
 		getEnemyImages();
+		getObjectsImages();
 	}
 /**
  * invoking method grabImage() in @SpriteSheet class to crop Enemy pictures
@@ -69,9 +75,12 @@ public class Texture {
 			playerIdle[i] = ps.grabImage(i + 1, 3, 32, 32);
 			playerLeft[i] = ps.grabImage(i + 1, 2, 32, 32);
 			playerAttaackRight[i]=ps.grabImage(i+1, 4, 32, 32);
+			playerAttaackLeft[i]=ps.grabImage(i+1, 5, 32, 32);
 			playerThrowRight[i]=ps.grabImage(i+1, 6, 32, 32);
-
+			
 		}
+		kunai[0]=ps.grabImage(1, 8, 32, 32);
+		kunai[1]=ps.grabImage(2, 8, 32, 32);
 	}
 
 	/**
@@ -79,12 +88,18 @@ public class Texture {
 	 * array of images
 	 */
 	private void getBlockImages() {
-		for (int i = 0; i < blocks.length; i++) {
-			blocks[i] = bs.grabImage(i + 1, 1, 32, 32);
+			blocks[0] = bs.grabImage( 8, 1, 32, 32);
+			blocks[1] = bs.grabImage( 2, 1, 32, 32);
+			blocks[2] = bs.grabImage( 6, 1, 32, 32);
+			blocks[3] = bs.grabImage( 7, 1, 32, 32);
+			blocks[4] = bs.grabImage( 1, 3, 32, 32);
 		}
-		blocks[4] = ps.grabImage(1, 2, 32, 32);
+	private void getObjectsImages() {
+		for (int i = 0; i < objects.length; i++) {
+			objects[i]=bs.grabImage(i+1, 2, 32, 32);
+		}
 	}
-
+	
 //--------- Getter methods for the arrays of BufferedImage-----------
 	public BufferedImage[] getBlocks() {
 		return blocks;
@@ -120,6 +135,17 @@ public class Texture {
 	public BufferedImage[] getPlayerThrowRight() {
 		return playerThrowRight;
 	}
+	public BufferedImage[] getObjects() {
+		return objects;
+		
+	}
+	public BufferedImage[] getPlayerAttaackLeft() {
+		return playerAttaackLeft;
+	}
+	public BufferedImage[] getKunai() {
+		return kunai;
+	}
+	
 
 	
 }

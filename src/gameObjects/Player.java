@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import gameSetup.Actions;
 import gameSetup.Game;
 import imageHandling.Animation;
 import imageHandling.Texture;
@@ -17,11 +18,11 @@ import imageHandling.Texture;
  * @author zchem
  *
  */
-public class Player extends GameObjects {
+public class Player extends GameObjects  {
 	private static final float MAX_VELY = 4;// used for setting the limit on Gravity
 	private int width = 48, height = 92;// dimensions of the player
-	BufferedImage[] temp, temp2, temp3,temp4,temp5;// Different arrays to store different types of movements
-	private Animation walkingRight, walkingLeft, jumpingUp, idle,attackingRight,throwingRight;// Creating Animation variables that will shuffle
+	BufferedImage[] temp, temp2, temp3,temp4,temp5,temp6;// Different arrays to store different types of movements
+	private Animation walkingRight, walkingLeft, jumpingUp, idle,attackingRight,attackingLeft,throwingRight;// Creating Animation variables that will shuffle
 																	// through the images
 
 	public Player(float x, float y, Tag tag, Texture texture) {
@@ -40,19 +41,25 @@ public class Player extends GameObjects {
 		attackingRight=new Animation(1, temp4);
 		temp5=texture.getPlayerThrowRight();
 		throwingRight=new Animation(2, temp5);
+		temp6=texture.getPlayerAttaackLeft();
+		attackingLeft=new Animation(1,temp6);
 		velx = 0;
 		health = 200;// setting initial health lvl
 		pointer=1;//by default player facing rigth
+		
+	
 	}
 
 	@Override
 	public void update(ArrayList<GameObjects> Objects) {
 		//temp checks if falling in sky
-		if(y>800){
+		
+		if(health<1){
 			x=100;
 			y=100;
 			health=200;	
 		}
+		//try{System.err.println(kunaiCount.getCount());}catch (Exception e) {}
 		//checks health temp 
 if(health>=0 )
 {	x += velx;
@@ -146,6 +153,7 @@ else {
 			walkingLeft.runAnimation();
 			attackingRight.runAnimation();
 			throwingRight.runAnimation();
+			attackingLeft.runAnimation();
 		} catch (Exception e) {
 			System.err.println("Player>update> line 101");
 		}
@@ -158,6 +166,10 @@ else {
 		 if(attacking && pointer==1)
 			{
 				attackingRight.drawAnimation(g,(int) x, (int)y+22, width+30, height-16);
+			}
+		 else if(attacking && pointer==-1)
+			{
+				attackingLeft.drawAnimation(g,(int) x, (int)y+22, width+30, height-16);
 			}
 		// if throwing and facing right
 		 else if(throwing && pointer==1)
@@ -181,6 +193,7 @@ else {
 		g.fillRect((int) x - 150, (int) y - 280, health / 10, 20);// inner box
 		g.setColor(Color.BLACK);
 		g2d.drawRect((int) x - 150, (int) y - 280, 200, 20);// bounary for health bar
+		//g2d.drawString("Kunai"+, MAX_VELY, MAX_VELY);
 		// Temp drawing boundaries to see the players boundaries
 		// g2d.draw(getBoundsBottom());
 		/*
@@ -224,5 +237,7 @@ else {
 	public Rectangle getBoundsSwordLeft() {
 		return new Rectangle((int) x, (int) y, width, height);
 	}
+	
+	
 
 }

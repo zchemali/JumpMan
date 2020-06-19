@@ -6,6 +6,7 @@ import imageHandling.Texture;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
@@ -47,7 +48,9 @@ public class Game extends Canvas implements Runnable {
 		image = loader.loadImage("/Map.PNG");// loading map image
 		loadMap(image);/** invoking a method in this class to create the map @see loadMap() */
 		//handler.createEnemy();///////// Temp.
-		this.addKeyListener(new Actions(handler));// Creating actions
+		Actions actions =new Actions(handler,texture);
+		System.err.println(actions.getCountKunai());
+		this.addKeyListener(actions);// Creating actions
 		cam = new Camera(0, 0);// creating instance of camera class
 		for (int xx = 0; xx < Game.WIDTH * 2; xx += 300) {
 			handler.addObject(new Enemy(xx, 0, Tag.Enemy, texture));
@@ -66,12 +69,14 @@ public class Game extends Canvas implements Runnable {
 	 */
 	@Override
 	public void run() {
+		
 		// Variables needed to calculate the target FPS and sleeping time for thread
 		long before = System.currentTimeMillis();
 		long timer = System.currentTimeMillis();
 		long target = 1000 / 60;
 		// Main loop
 		while (running) {
+		
 			try {
 				update();
 			} catch (Exception e)
@@ -167,6 +172,7 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0, 0, WIDTH * 4, HEIGHT);
 		// casting to 2d so we can use translate method to move camera
 		Graphics2D g2d = (Graphics2D) g;
+		
 		// Shifting the x,y coordinates by tx=Width/2 and ty=height/2
 		g2d.translate(cam.getX(), cam.getY());
 		// for loop to repeat the background image NOTE: it is drawn before invoking
@@ -175,6 +181,7 @@ public class Game extends Canvas implements Runnable {
 			g.drawImage(backGround, (int) xx, 200, 1000, 1000, this);
 			g2d.drawImage(backGround2, (int) xx, 300, 1000, 700, this);
 		}
+		
 		// updating grahics of GameObjects
 		handler.render(g);
 		g2d.translate(-cam.getX(), -cam.getY());

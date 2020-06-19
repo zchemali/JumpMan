@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 import javax.net.ssl.SSLEngineResult.Status;
 
 import gameObjects.*;
+import imageHandling.Texture;
 
 
 /**
@@ -17,17 +18,23 @@ import gameObjects.*;
  */
 public class Actions implements KeyListener {
 	private Handler handler;
+	private Texture texture;
 	int count = 0;// used for limiting number of jumps
 	int countKunai=10;//used to limit kunais thrown NOTE: add pick up elements to set this number 
 	/** 
 	 * This is a constructor that sets the handler variable in this class to @param
 	 * 
 	 * @param handler2 passed from the @Game Class
+	 * @param texture 
 	 */
-	public Actions(Handler handler2) {
+	public Actions(Handler handler2, Texture texture) {
 		this.handler = handler2;
+		this.texture=texture;
+		
 
 	}
+
+	
 
 	/**
 	 * Overriding @KeyListener method
@@ -43,7 +50,6 @@ public class Actions implements KeyListener {
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
-
 		int i = e.getKeyCode();
 		if (i == KeyEvent.VK_ESCAPE)// if user hits the Esc key then close Window
 			System.exit(1);
@@ -66,9 +72,9 @@ public class Actions implements KeyListener {
 				if(i==KeyEvent.VK_K && !temp.isThrowing() && countKunai>0)
 					{temp.setThrowing(true);//sets throwing to true for animation
 					if(temp.getPointer()==1)//checks if player facing right
-					handler.addObject(new Kunai(temp.getX(), temp.getY(), Tag.KunaiRight, null));
+					handler.addObject(new Kunai(temp.getX(), temp.getY(), Tag.KunaiRight, texture,countKunai));
 					else//if player facing opp direction
-						handler.addObject(new Kunai(temp.getX(), temp.getY(), Tag.KunaiLeft, null));
+						handler.addObject(new Kunai(temp.getX(), temp.getY(), Tag.KunaiLeft, texture,countKunai));
 					countKunai--;
 					}
 				
@@ -125,5 +131,20 @@ public class Actions implements KeyListener {
 			}
 		}
 	}
+/**
+ * 
+ * @return count kunai left
+ */
+	public int getCountKunai() {
+		return countKunai;
+	}
 
-}
+	public void setCountKunai(int countKunai) {
+		this.countKunai = countKunai;
+	}
+
+	
+	
+	}
+
+

@@ -1,20 +1,26 @@
 package gameObjects;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import imageHandling.Texture;
 
 public class Kunai extends GameObjects {
-int width,height;
-	public Kunai(float x, float y, Tag tag, Texture texture) {
+int width,height,count,tempx,tempy;
+BufferedImage[] image;
+	public Kunai(float x, float y, Tag tag, Texture texture, int countKunai) {
 		super(x, y, tag, texture);
 		pointer=1;
 		width=20;
 		height=10;
+		//grabbing the kunai images from texture class
+		image=texture.getKunai();
+		this.count=countKunai;
 		
 	}
 
@@ -41,6 +47,12 @@ int width,height;
 			}
 				}
 		
+		if(Objects.get(i).tag==Tag.Player)
+		{
+			tempx=(int) Objects.get(i).getX();
+			tempy=(int) Objects.get(i).getY();
+			
+		}
 		}
 		
 		
@@ -48,11 +60,21 @@ int width,height;
 
 	@Override
 	public void render(Graphics g) {
-	g.setColor(Color.red);
+		
+	if(tag==Tag.KunaiLeft)//checking direction of kunai thrown
+		g.drawImage(image[1], (int)x, (int)y+60, width, height,null);
+	else if(tag==Tag.KunaiRight)
+		g.drawImage(image[0], (int)x, (int)y+60, width, height,null);
+		g.setColor(Color.red);
 	//g.fillRect((int)x, (int)y+60, width, height);
+		//trying to display kunais left
 		Graphics2D g2d =(Graphics2D) g;
-		g2d.draw(getBounds());
+		g.setFont(new Font ("",1,40));
+		
+		g.setColor(Color.BLACK);
+		g2d.drawString(""+count, tempx-150, tempy-235);
 	}
+	
 
 	@Override
 	public Rectangle getBounds() {

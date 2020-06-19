@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import imageHandling.Texture;
@@ -17,10 +18,12 @@ import imageHandling.Texture;
 public class MovingObsticale extends GameObjects {
 	private int count = 0;
 	private final int MAX_COUNT = 200;
+	private BufferedImage[] image;
 
 	public MovingObsticale(float x, float y, Tag tag, Texture texture) {
 		super(x, y, tag, texture);
 		velx = 2;
+		image=texture.getBlocks();
 	}
 
 	@Override
@@ -40,12 +43,11 @@ public class MovingObsticale extends GameObjects {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.red);
-		g.fillRect((int) x, (int) y, 100, 30);
+		g.drawImage(image[4],(int) x,(int) y, 100, 30, null);
 //drawing boundaries
-		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(Color.WHITE);
-		g2d.draw(getBounds());
+		//Graphics2D g2d = (Graphics2D) g;
+		//g.setColor(Color.WHITE);
+		//g2d.draw(getBounds());
 	}
 
 	@Override
