@@ -56,18 +56,18 @@ public class PlatForm extends GameObjects {
 		} else if (tag == Tag.Tree) {
 			g.drawImage(temp[4], (int) x - 60, (int) y - 150, 150, 200, null);
 		}
-
-		// g.setColor(Color.WHITE);
-		// g.drawRect((int)x, (int)y, 32, 32);
-		// g.setColor(Color.red);
-		// Graphics2D g2d =(Graphics2D) g;
-		// g2d.draw(getBounds());
+		//to check boundary layer
+		/* g.setColor(Color.WHITE);
+		 g.drawRect((int)x, (int)y, 32, 32);
+		 g.setColor(Color.red);
+		 Graphics2D g2d =(Graphics2D) g;
+		 g2d.draw(getBounds());*/
 
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle((int) x, (int) y, 32, 32);
+		return new Rectangle((int) x, (int) y+3, 32, 32);
 	}
 
 }

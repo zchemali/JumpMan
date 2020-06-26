@@ -22,6 +22,11 @@ public class Texture {
 	public BufferedImage[] playerAttaackRight = new BufferedImage[10];
 	public BufferedImage[] playerAttaackLeft=new BufferedImage[10];
 	public BufferedImage[] playerThrowRight= new BufferedImage[10];
+	public BufferedImage[] playerThrowLeft=new BufferedImage[10];
+	public BufferedImage[] glideRight=new BufferedImage[10];
+	public BufferedImage[] glideLeft=new BufferedImage[10];
+	public BufferedImage[] jumpRight=new BufferedImage[10];
+	public BufferedImage[] jumpLeft=new BufferedImage[10];
 	public BufferedImage[] kunai=new BufferedImage[2];
 	// aaray for movement of enemy 
 	public BufferedImage[] enemyIdle = new BufferedImage[8];
@@ -77,7 +82,11 @@ public class Texture {
 			playerAttaackRight[i]=ps.grabImage(i+1, 4, 32, 32);
 			playerAttaackLeft[i]=ps.grabImage(i+1, 5, 32, 32);
 			playerThrowRight[i]=ps.grabImage(i+1, 6, 32, 32);
-			
+			playerThrowLeft[i]=ps.grabImage(i+1, 7, 32, 32);
+			glideRight[i]=ps.grabImage(i+1, 9, 32, 32);
+			glideLeft[i]=ps.grabImage(i+1, 10, 32, 32);
+			jumpRight[i]=ps.grabImage(i+1, 11, 32, 32);
+			jumpLeft[i]=ps.grabImage(i+1, 12, 32, 32);
 		}
 		kunai[0]=ps.grabImage(1, 8, 32, 32);
 		kunai[1]=ps.grabImage(2, 8, 32, 32);
@@ -144,6 +153,21 @@ public class Texture {
 	}
 	public BufferedImage[] getKunai() {
 		return kunai;
+	}
+	public BufferedImage[] getPlayerThrowLeft() {
+		return playerThrowLeft;
+	}
+	public BufferedImage[] getGlideRight() {
+		return glideRight;
+	}
+	public BufferedImage[] getGlideLeft() {
+		return glideLeft;
+	}
+	public BufferedImage[] getJumpRight() {
+		return jumpRight;
+	}
+	public BufferedImage[] getJumpLeft() {
+		return jumpLeft;
 	}
 	
 

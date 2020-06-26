@@ -20,7 +20,7 @@ public class Actions implements KeyListener {
 	private Handler handler;
 	private Texture texture;
 	int count = 0;// used for limiting number of jumps
-	int countKunai=10;//used to limit kunais thrown NOTE: add pick up elements to set this number 
+	int countKunai=100;//used to limit kunais thrown NOTE: add pick up elements to set this number 
 	/** 
 	 * This is a constructor that sets the handler variable in this class to @param
 	 * 
@@ -82,13 +82,17 @@ public class Actions implements KeyListener {
 
 				// setting the jumping of player
 				if ((i == KeyEvent.VK_SPACE) && temp.isJumping()&& !temp.isAttacking()) { // you can only jump three times in a row
-					if (count <= 3) {
+					if (count <= 2) {
+						temp.setJumpCheck(true);
 						temp.setVely(-5);
 						count += 1;
-						if (count == 3) {
-							{
+						if(temp.isCounterReset())
+							count=0;
+						if (count == 2 ) {
+							{ 
+								temp.setGliding(true);
 								temp.setJumping(false);// if count=3 then player cant jump
-								count -= 3;
+								count =0;
 							}
 						}
 
@@ -124,9 +128,8 @@ public class Actions implements KeyListener {
 				}
 				
 				if (i == KeyEvent.VK_SPACE) {
-
+					temp.setJumpCheck(false);
 					temp.setFalling(true);// Whenever space key is released then sets falling to true so gravity can be
-											// activated
 				}
 			}
 		}

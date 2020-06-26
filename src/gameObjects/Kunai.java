@@ -39,7 +39,6 @@ BufferedImage[] image;
 			if (Objects.get(i).tag==Tag.Enemy) {
 				if(getBounds().intersects(Objects.get(i).getBounds())){
 				{Objects.get(i).setHealth(Objects.get(i).getHealth()-10);
-				System.out.println(Objects.get(i).getHealth());
 				
 				}
 				if(Objects.get(i).getHealth()<2)
@@ -68,11 +67,11 @@ BufferedImage[] image;
 		g.setColor(Color.red);
 	//g.fillRect((int)x, (int)y+60, width, height);
 		//trying to display kunais left
-		Graphics2D g2d =(Graphics2D) g;
+		/*Graphics2D g2d =(Graphics2D) g;
 		g.setFont(new Font ("",1,40));
 		
 		g.setColor(Color.BLACK);
-		g2d.drawString(""+count, tempx-150, tempy-235);
+		g2d.drawString(""+count, tempx-150, tempy-235);*/
 	}
 	
 

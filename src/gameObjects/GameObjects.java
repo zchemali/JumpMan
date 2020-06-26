@@ -24,9 +24,12 @@ public abstract class GameObjects {
 	protected boolean falling;
 	protected boolean jumping;
 	protected boolean attacking;
+	protected boolean gliding;
 	protected int health;
 	protected int pointer;
 	protected boolean throwing;
+	protected boolean jumpCheck;
+	protected boolean counterReset;
 	public Tag tag;
 	Texture texture;
 
@@ -143,6 +146,30 @@ public abstract class GameObjects {
 
 	public void setThrowing(boolean throwing) {
 		this.throwing = throwing;
+	}
+
+	public boolean isGliding() {
+		return gliding;
+	}
+
+	public void setGliding(boolean gliding) {
+		this.gliding = gliding;
+	}
+
+	public boolean isJumpCheck() {
+		return jumpCheck;
+	}
+
+	public void setJumpCheck(boolean jumpCheck) {
+		this.jumpCheck = jumpCheck;
+	}
+
+	public boolean isCounterReset() {
+		return counterReset;
+	}
+
+	public void setCounterReset(boolean counterReset) {
+		this.counterReset = counterReset;
 	}
 	
 }
