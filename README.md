@@ -1,2 +1,11 @@
 # NinjaBoy-2D Game
-under Development
+
+![image-20201118185710055](README.assets/image-20201118185710055.png)
+
+
+
+![image-20201118185820697](README.assets/image-20201118185820697.png)
+
+![image-20201118185950344](README.assets/image-20201118185950344.png)
+
+![image-20201118190109106](README.assets/image-20201118190109106.png)
